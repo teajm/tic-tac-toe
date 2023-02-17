@@ -1,0 +1,31 @@
+:root {
+    --dark-text: rgb(53, 53, 67);
+    --light-text: white;
+    --grey-text:rgb(119, 119, 119);
+    --hover-link: rgb(45, 109, 212);
+    --background-col: #E1EEDD;
+    --shadow-col:#F0A04B;
+}
+
+body{
+    background-color: var(--background-col);
+    margin:0;
+    /* font-family: 'Rubik', sans-serif; */
+    font-family: monospace;
+    font-size: 14px;
+}
+.footer{
+    background-color: #183A1D;
+    color:#FEFBE9;
+    display:flex;
+    align-items: center;
+    position:absolute;
+    bottom:0;
+    gap:10px;
+    justify-content: center;
+    width:100%;
+}
+#github-logo{
+    width:18px;
+    height:18px;
+}
