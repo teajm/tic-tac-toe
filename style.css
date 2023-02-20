@@ -13,6 +13,12 @@ body{
     /* font-family: 'Rubik', sans-serif; */
     font-family: monospace;
     font-size: 14px;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}
+.header{
+    margin-bottom:10rem;
 }
 .footer{
     background-color: #183A1D;
@@ -31,9 +37,12 @@ body{
 }
 .gameboard{
     display:grid;
+    width:auto;
+    height:auto;
     grid-template-rows: repeat(3, 1fr);
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 1rem;
+    justify-items: center;
 }
 .gamesquare{
     width:50px;

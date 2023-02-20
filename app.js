@@ -5,10 +5,13 @@ const gameBoard = (() =>{
         board.push('');
     }
     board.forEach((element,index) => {
+        var chosenValue = Math.random() < 0.5 ? "X" : "O";
         const gameSquare = document.createElement('div');
         gameSquare.className = 'gamesquare';
         gameboardDiv.appendChild(gameSquare);
+        gameSquare.innerText = chosenValue;
     })
+
     Array.from(gameboardDiv.children).forEach((gameSquare, index) => {
         gameSquare.addEventListener('click', () =>{
             //render player marker
