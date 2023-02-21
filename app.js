@@ -25,7 +25,7 @@ const gameBoard = (() =>{
 
             //check for winner
 
-            //check remaining board slots to determine if there's a tie
+            //check remaining board slots to determine if there's a tie 
 
 
 
@@ -41,7 +41,7 @@ const player = (name,marker) =>{
     return {name,marker};
 }
 
-const game= (() =>{
+const game = (() =>{
     let slots = 9;
 })();
 
