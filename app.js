@@ -25,27 +25,42 @@ const gameBoard = (() =>{
             gameSquare.setAttribute('data', game.activePlayer.marker);
             gameSquare.innerText = game.activePlayer.marker;
             //update array value to match for the active player
-            console.log(index);
             //remove event listener from the marked index so it can't be used
             gameSquare.style.pointerEvents = 'none';
             //update num of slots left on board.
             game.slots -= 1;
-            if(game.slots > 0){
-                let ranChoice = randomIntFromInterval(0,8);
-                let opponentDiv = document.querySelector('#' + ranChoice);
-                if (board[ranChoice] !=  game.activePlayer.marker){
-                    board[ranChoice] = game.oppenentPlayer.marker;
-                    opponentDiv.setAttribute('data',game.oppenentPlayer.marker);
-                    opponentDiv.innerText= game.oppenentPlayer.marker;
+            game.checkForWinner();
+            setTimeout(function(){
+                if(game.slots > 0){
+                    let ranChoice = randomIntFromInterval(0,8);
+                    while(board[ranChoice] == game.activePlayer.marker || board[ranChoice] == game.oppenentPlayer.marker){
+                        ranChoice = randomIntFromInterval(0,8);
+                    }
+                    let opponentDiv = (document.getElementById(ranChoice));
+                    if (board[ranChoice] !=  game.activePlayer.marker){
+                        board[ranChoice] = game.oppenentPlayer.marker;
+                        opponentDiv.setAttribute('data',game.oppenentPlayer.marker);
+                        opponentDiv.innerText= game.oppenentPlayer.marker;
+                        opponentDiv.style.pointerEvents = 'none';
+                        game.slots -= 1;
+                    }
                 }
-            }
+
+            }, 300); 
+
             //check for winner
-
+            game.checkForWinner();
             //check remaining board slots to determine if there's a tie 
-
+            if(game.slots == 0){
+                console.log('tie');
+            }
         })
 
     });
+
+    function randomIntFromInterval(min, max) { // min and max included 
+        return Math.floor(Math.random() * (max - min + 1) + min)
+      }
     return{
         board
     };
@@ -58,16 +73,49 @@ const game = (() =>{
     let slots = 9;
     let activePlayer = playerCharacter;
     let oppenentPlayer = opponentCharacter;
+    const winningConditions = [
+        [0,1,2],
+        [3,4,5],
+        [6,7,8],
+        [0,3,6],
+        [1,4,7],
+        [2,5,8],
+        [0,4,8],
+        [2,4,6],
+    ];
+    function checkForWinner(){
+        winningConditions.forEach((condition) =>{
+            if (gameBoard.board[condition[0]] === this.activePlayer.marker && gameBoard.board[condition[1]] 
+                === this.activePlayer.marker && gameBoard.board[condition[2]] === this.activePlayer.marker ){
+                    console.log('winner');
+                   let div1 =  document.getElementById(condition[0]);
+                   div1.style.backgroundColor = '#62ef77';
+                   let div2 =  document.getElementById(condition[1]);
+                   div2.style.backgroundColor = '#62ef77';
+                   let div3 =  document.getElementById(condition[2]);
+                   div3.style.backgroundColor = '#62ef77';
+            }
+            if (gameBoard.board[condition[0]] === this.oppenentPlayer.marker && gameBoard.board[condition[1]] 
+                === this.oppenentPlayer.marker && gameBoard.board[condition[2]] === this.oppenentPlayer.marker ){
+                    console.log('winner');
+                   let div1 =  document.getElementById(condition[0]);
+                   div1.style.backgroundColor = '#62ef77';
+                   let div2 =  document.getElementById(condition[1]);
+                   div2.style.backgroundColor = '#62ef77';
+                   let div3 =  document.getElementById(condition[2]);
+                   div3.style.backgroundColor = '#62ef77';
+            }
+            
+        })
+    }
     return{
         slots,
         activePlayer,
-        oppenentPlayer
+        oppenentPlayer,
+        checkForWinner
     };
 })();
 
 
 
 
-function randomIntFromInterval(min, max) { // min and max included 
-  return Math.floor(Math.random() * (max - min + 1) + min)
-}
