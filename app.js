@@ -1,4 +1,8 @@
-
+const endgameModal = document.getElementById('endgameModal');
+function openEndgameModal() {
+    endgameModal.classList.add('active')
+    overlay.classList.add('active')
+}
 const player = (name,marker) =>{
     return {name,marker};
 }
@@ -94,6 +98,7 @@ const game = (() =>{
                    div2.style.backgroundColor = '#62ef77';
                    let div3 =  document.getElementById(condition[2]);
                    div3.style.backgroundColor = '#62ef77';
+                   openEndgameModal();
             }
             if (gameBoard.board[condition[0]] === this.oppenentPlayer.marker && gameBoard.board[condition[1]] 
                 === this.oppenentPlayer.marker && gameBoard.board[condition[2]] === this.oppenentPlayer.marker ){
@@ -104,6 +109,8 @@ const game = (() =>{
                    div2.style.backgroundColor = '#62ef77';
                    let div3 =  document.getElementById(condition[2]);
                    div3.style.backgroundColor = '#62ef77';
+                   openEndgameModal();
+
             }
             
         })
